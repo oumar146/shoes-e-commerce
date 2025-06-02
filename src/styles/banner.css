@@ -1,0 +1,22 @@
+#banner {
+    background: linear-gradient(90deg, #4A69E2, #232321);
+  /* margin: 32px 16px 24px 16px; */
+  padding: 15px 25px;
+}
+
+.slogan {
+  font-family: 'Rubik', sans-serif;
+  font-weight:900;
+  font-size: 7vh;
+  letter-spacing: 2.235px;
+  color: #232321;
+  text-transform: uppercase;
+  text-align: center;
+  margin: 15vh 0vh;
+  
+}
+
+.slogan span {
+  color: #4A69E2;
+}
+

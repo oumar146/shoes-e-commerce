@@ -1,0 +1,123 @@
+
+
+/* Haut du footer */
+.footer-top {
+  background-color: #4A69E2;
+  color: #E7E7E3;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 80px 20px;
+  /* border-radius: 48px ; */
+  flex-wrap: wrap;
+}
+
+.newsletter {
+  max-width: 500px;
+}
+
+.newsletter h3 {
+  font-size: 24px;
+  margin-bottom: 8px;
+}
+
+.newsletter-form {
+  display: flex;
+  gap: 12px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+
+.newsletter-form input {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 6px;
+  width: 250px;
+  font-size: 16px;
+}
+
+.newsletter-form button {
+  background-color: #232321;
+  color: #E7E7E3;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  /* transition: background 0.3s; */
+}
+
+.newsletter-form button:hover {
+  background-color: #1a1a1a;
+}
+
+.footer-logo h1 {
+  /* font-size: 48px; */
+  color: #E7E7E3;
+  margin: 0;
+}
+
+/* Bas du footer */
+.footer-bottom {
+  background-color: #232321;
+  color: #E7E7E3;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  padding: 40px 20px;
+  gap: 20px;
+}
+
+.footer-column h4 {
+  color: #FFA52F;
+  margin-bottom: 12px;
+  font-size: 18px;
+}
+
+.footer-column ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-column li {
+  margin-bottom: 8px;
+  font-size: 15px;
+}
+
+.socials li {
+  cursor: pointer;
+}
+
+@media (max-width: 600px) {
+  .footer-top {
+    flex-direction: column;
+    text-align: center;
+    gap: 30px;
+  }
+
+  .newsletter-form {
+    justify-content: center;
+  }
+}
+
+.footer {
+  position: relative;
+  background-color: #4A69E2; /* pour remplir le fond autour */
+    /* border-radius: 48px ; */
+
+  /* margin: 16px; */
+  /* padding: 0px 16px ; */
+  /* margin: 0px 16px ; */
+}
+
+/* effet superposition */
+.footer-bottom {
+  position: relative;
+  bottom: 0px; /* chevauche vers le haut */
+  z-index: 2;
+  background-color: #232321;
+  border-radius: 30px 30px 0px 0px;
+  padding: 40px 20px 100px 20px;
+  /* margin: 0 16px; */
+  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.2);
+}

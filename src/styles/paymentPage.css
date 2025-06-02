@@ -1,0 +1,56 @@
+/* PaymentPage.css */
+
+.payment-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+.payment-form .MuiTextField-root {
+  width: 100%;
+}
+
+.payment-details-grid {
+  display: flex;
+  gap: 16px;
+}
+
+.payment-details-grid .MuiTextField-root {
+  flex: 1;
+}
+
+.payment-form button {
+  background-color: #232321;
+  color: white;
+  font-weight: 600;
+  padding: 12px 0;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.payment-form button:hover {
+  background-color: #444440;
+}
+
+.summary-paper {
+  padding: 24px;
+  background-color: #f5f5f5;
+}
+
+.product-image {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  margin-right: 16px;
+}
+
+.product-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.product-selected {
+  margin-top: 16px;
+  margin-bottom: 16px;
+}

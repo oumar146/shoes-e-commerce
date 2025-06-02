@@ -1,0 +1,142 @@
+
+
+.content {
+  display: flex;
+  padding: 2rem;
+  gap: 2rem;
+}
+
+.filters {
+  width: 250px;
+  border-radius: 10px;
+  padding: 1.5rem;
+}
+
+.filter-section {
+  margin-bottom: 2rem;
+}
+
+.filter-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+}
+
+.filter-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.filter-options label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+}
+
+.price-range {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.price-values {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+}
+
+.range-input {
+  -webkit-appearance: none;
+  height: 6px;
+  background: transparent;
+  border-top: 4px solid black;
+  border-radius: 0px;
+  outline: none;
+  margin-top: 0.5rem;
+  position: relative;
+
+}
+
+.range-input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #007bff;
+  cursor: pointer;
+    margin-top: -5px;
+
+}
+
+.range-input::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #007bff;
+  cursor: pointer;
+}
+
+.products-list {
+  flex: 1;
+}
+.content {
+  display: flex;
+  padding: 2rem;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+/* Filtres */
+.filters {
+  width: 250px;
+  border-radius: 10px;
+  padding: 1.5rem;
+  background-color: #f9f9f9;
+  flex-shrink: 0;
+}
+
+/* Section des produits */
+.products-list {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Responsive: en dessous de 1200px */
+@media screen and (max-width: 1200px) {
+  .content {
+    flex-direction: column;
+    padding: 1rem;
+  }
+
+  .filters {
+    width: 100%;
+    padding: 1rem;
+    background-color: #f9f9f9;
+  }
+
+  .products-list {
+    width: 100%;
+  }
+}
+
+/* Responsive: en dessous de 600px */
+@media screen and (max-width: 600px) {
+  .filter-title {
+    font-size: 1rem;
+  }
+
+  .filter-options label {
+    font-size: 0.9rem;
+  }
+
+  .price-values {
+    font-size: 0.8rem;
+  }
+}

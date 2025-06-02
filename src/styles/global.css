@@ -1,0 +1,30 @@
+html {
+    background-color: #E7E7E3;
+    padding: 0;
+    margin: 0;
+      scroll-behavior: smooth;
+
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+.logo {
+    padding: 0px;
+    margin: 0px;
+    font-weight: bolder;
+    text-decoration: none
+}
+
+section {
+    margin-top: 10vh;
+    /* margin-bottom: 10vh; */
+}
+
+.nav-link{
+    text-decoration: none;
+}
