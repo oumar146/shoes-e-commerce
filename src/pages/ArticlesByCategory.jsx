@@ -6,12 +6,14 @@ import axios from "axios";
 import config from "../config";
 import Footer from "../components/Footer";
 import { useParams } from "react-router-dom";
+import Loader from "../components/Loader"
 import "../styles/articlesByGender.css";
 
 const ArticlesByCategory = () => {
   const { category } = useParams();
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
+    const [filtred, setFiltred] = useState(false);
   const [uniqueSizes, setUniqueSizes] = useState([]);
 
   const [filters, setFilters] = useState({
@@ -87,6 +89,7 @@ const ArticlesByCategory = () => {
     });
 
     setFilteredProducts(filtered);
+    setFiltred(true)
   }, [products, filters]);
 
   return (
@@ -122,11 +125,13 @@ const ArticlesByCategory = () => {
             title={filters.category.length === 1 ? filters.category[0] : "Tous les articles"}
             showButton={false}
           />
-          {filteredProducts.length === 0 && (
+          {filteredProducts.length === 0 && filtred && (
             <p className="no-products-message">
               Aucun article disponible pour ces filtres.
             </p>
           )}
+          {filtred ===false &&
+          <Loader/>}
         </main>
       </div>
 

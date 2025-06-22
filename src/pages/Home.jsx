@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import config from "../config";
 import Footer from "../components/Footer";
+import Loader from "../components/Loader"
 
 const LastestArticle = ({ products }) => {
 
@@ -21,7 +22,7 @@ const LastestArticle = ({ products }) => {
       title={"Ne manquez pas\nnos dernières sorties"}
       buttonLabel="Découvrir les nouveautés"
       onButtonClick={() => alert("Bouton cliqué !")}
-      showButton = {false}
+      showButton={false}
     />
   );
 };
@@ -31,7 +32,7 @@ function Home() {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    window.scrollTo(0,0)
+    window.scrollTo(0, 0)
     const fetchProducts = async () => {
       try {
         const response = await axios.get(`${config.apiUrl}/product/offers`);
@@ -47,9 +48,15 @@ function Home() {
   return (
     <div>
       <Header />
-      <Banner product={products[0]} />
-      <LastestArticle products={products} />
-      <CategorySection products={products} />
+      {products.length > 0 ?
+        (
+          <div>
+            <Banner product={products[0]} />
+            <LastestArticle products={products} />
+            <CategorySection products={products} />
+          </div>
+        )
+        : <Loader />}
       <Footer />
     </div>
   );

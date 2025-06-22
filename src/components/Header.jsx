@@ -8,7 +8,7 @@ import IconButton from "@mui/material/IconButton";
 import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import MenuIcon from "@mui/icons-material/Menu";
+import { Menu, MenuItem } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import CloseIcon from "@mui/icons-material/Close";
 import { NavLink, useNavigate } from "react-router-dom";
@@ -32,55 +32,42 @@ const HeaderBadge = ({ number, children, className }) => (
   </IconButton>
 );
 
-const MobileMenu = ({ children }) => {
-  const [showMenu, setShowMenu] = useState(false);
-  const [categories, setCategories] = useState([]);
 
-  useEffect(() => {
-    const fetchCategories = async () => {
-      try {
-        const response = await axios.get(`${config.apiUrl}/category/get`);
-        setCategories(response.data.categories);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    fetchCategories();
-  }, []);
-
-  return (
-    <>
-      <IconButton className="menu-button" onClick={() => setShowMenu(!showMenu)}>
-        <MenuIcon />
-      </IconButton>
-
-      <div className={`side-menu ${showMenu ? "open" : ""}`}>
-        <button className="close-button" onClick={() => setShowMenu(false)}>X</button>
-        {children ? (<div className="mobile-children">
-          {children}
-        </div>) : (
-          <ul>
-            {categories.map((category, index) => (
-              <li key={index}>{category.name}</li>
-            ))}
-          </ul>)}
-      </div>
-
-      {showMenu && <div className="overlay" onClick={() => setShowMenu(false)} />}
-    </>
-  );
-};
-
-const Header = ({ children }) => {
+const Header = () => {
   const [showSearch, setShowSearch] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredSuggestions, setFilteredSuggestions] = useState([]);
   const [products, setProducts] = useState([]);
   const [genders, setGenders] = useState([]);
   const [selectedGender, setSelectedGender] = useState("");
+  const [anchorEl, setAnchorEl] = useState(null);
+
+  // const handleChange = (event) => {
+  //   setAuth(event.target.checked);
+  // };
+
+  const handleMenu = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const handleLogin = () => {
+    navigate("/login")
+    handleClose()
+  };
+
+  const handleLogout = () => {
+    updateUser(null);
+    localStorage.removeItem("token");
+    handleClose()
+
+  };
 
   const { cart } = useCart();
-  const { user } = useContext(UserContext);
+  const { user, updateUser } = useContext(UserContext);
   const { favorites } = useFavorites();
   const navigate = useNavigate();
 
@@ -175,22 +162,50 @@ const Header = ({ children }) => {
             </li>
             <li>
               <NavLink to={`/${user ? "cart" : "login"}`}>
-                <HeaderBadge number={cart.length || null} className="hidden lg:flex">
+                <HeaderBadge number={!user ? null : cart.length || null} className="hidden lg:flex">
                   <ShoppingBagIcon />
                 </HeaderBadge>
               </NavLink>
             </li>
             <li>
               <NavLink to={`/${user ? "favorites" : "login"}`}>
-                <HeaderBadge number={favorites.length || null} className="hidden lg:flex">
+                <HeaderBadge number={!user ? null :  favorites.length || null} className="hidden lg:flex">
                   <FavoriteIcon />
                 </HeaderBadge>
               </NavLink>
             </li>
             <li>
-              <IconButton className="header-icon">
-                <AccountCircleIcon />
-              </IconButton>
+              <div>
+                <IconButton
+                  size="large"
+                  aria-label="account of current user"
+                  aria-controls="menu-appbar"
+                  aria-haspopup="true"
+                  onClick={handleMenu}
+                >
+                  <AccountCircleIcon />
+                </IconButton>
+                <Menu
+                  sx={{ mt: '45px' }}
+
+                  id="menu-appbar"
+                  anchorEl={anchorEl}
+                  anchorOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                  }}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                  }}
+                  open={Boolean(anchorEl)}
+                  onClose={handleClose}
+                >
+                  {user ? <MenuItem onClick={handleLogout}>Se déconnecter</MenuItem> :
+                    <MenuItem onClick={handleLogin}>Se connecter</MenuItem>}
+                </Menu>
+              </div>
             </li>
           </ul>
         </div>

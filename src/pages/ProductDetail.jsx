@@ -25,8 +25,23 @@ const ProductDetail = () => {
   const [selectedArticle, setSelectedArticle] = useState(null);
   const [products, setProducts] = useState([]);
   const [relatedProducts, setRelatedProducts] = useState([]);
-  const [sizes, setSizes] = useState([]);
+  const [sizes, setSizes] = useState([
+    { label: '35', available: true },
+    { label: '36', available: true },
+    { label: '37', available: true },
 
+    { label: '38', available: true },
+    { label: '39', available: false },
+    { label: '40', available: true },
+    { label: '41', available: true },
+    { label: '42', available: false },
+    { label: '43', available: true },
+    { label: '44', available: true },
+    { label: '45', available: false },
+    { label: '46', available: true },
+    { label: '47', available: false }
+
+  ]);
   // Charger les produits une seule fois
   useEffect(() => {
     const fetchProducts = async () => {
@@ -51,15 +66,15 @@ const ProductDetail = () => {
   }, [id, products]);
 
   // Définir les tailles
-  useEffect(() => {
-    if (selectedArticle?.stock) {
-      const formattedSizes = selectedArticle.stock.map(({ size, quantity }) => ({
-        label: size,
-        available: quantity > 0
-      }));
-      setSizes(formattedSizes);
-    }
-  }, [selectedArticle]);
+  // useEffect(() => {
+  //   if (selectedArticle?.stock) {
+  //     const formattedSizes = selectedArticle.stock.map(({ size, quantity }) => ({
+  //       label: size,
+  //       available: quantity > 0
+  //     }));
+  //     setSizes(formattedSizes);
+  //   }
+  // }, [selectedArticle]);
 
   // Produits similaires dans la même catégorie
   useEffect(() => {
@@ -116,11 +131,11 @@ const ProductDetail = () => {
           <div className="product-content">
             <div className="image-grid">
               {/* {[1, 2, 3, 4].map((_, index) => ( */}
-                <img
-                  // key={index}
-                  src={selectedArticle.image_url}
-                  alt={selectedArticle.product_name}
-                />
+              <img
+                // key={index}
+                src={selectedArticle.image_url}
+                alt={selectedArticle.product_name}
+              />
               {/* ))} */}
             </div>
 

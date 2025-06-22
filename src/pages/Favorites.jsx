@@ -7,12 +7,14 @@ import config from "../config";
 import { UserContext } from "../context/UserContext";
 import ArticleSection from "../components/ArticleSection";
 import Recommandations from "../components/Recommandations";
+import Loader from "../components/Loader"
 
 const Favorites = () => {
   const { favorites } = useFavorites();
   const { user } = useContext(UserContext);
   const [products, setProducts] = useState([]);
   const [recommendedProducts, setRecommendedProducts] = useState([]);
+  const [fetch, setFetch] = useState(false);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -45,6 +47,8 @@ const Favorites = () => {
         }
 
         setRecommendedProducts(recommendations);
+        setFetch(true)
+
       } catch (error) {
         console.error("Erreur lors de la récupération des produits :", error);
       }
@@ -62,17 +66,19 @@ const Favorites = () => {
       <Header />
 
       <main className="product-list">
-        <ArticleSection
-          products={filteredProducts}
-          maxItems={4}
-          showIcon={false}
-          iconColor="#4A69E2"
-          textColor="#fff"
-          title="Mes favoris"
-          showButton={false}
-        />
+        {!fetch ? <Loader /> :
+          <div>        <ArticleSection
+            products={filteredProducts}
+            maxItems={4}
+            showIcon={false}
+            iconColor="#4A69E2"
+            textColor="#fff"
+            title="Mes favoris"
+            showButton={false}
+          />
 
-        <Recommandations products={recommendedProducts} />
+            <Recommandations products={recommendedProducts} />
+          </div>}
       </main>
 
       <Footer />
